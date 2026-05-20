@@ -21,31 +21,30 @@ with st.sidebar:
     )
 
 # --- LÓGICA DO PROCESSO ---
-# (Sua lógica original com correções de digitação e adição de cores)
 if temperatura <= 30:
     nivel_nome = "BAIXA"
     nivel_cor = "blue"
     st_dissipador = "🟢 LIGADO"
     st_refrigerador = "🔴 DESLIGADO"
-    simbolo_processo = "💧" # Símbolo de frio/estável
+    simbolo_processo = "💧" 
 
 elif temperatura > 30 and temperatura <= 32:
     nivel_nome = "MÉDIA"
     nivel_cor = "orange"
     st_dissipador = "🔴 DESLIGADO"
     st_refrigerador = "🔴 DESLIGADO"
-    simbolo_processo = "✅" # Símbolo de estável
+    simbolo_processo = "✅" 
 
 else:
     nivel_nome = "ALTA"
     nivel_cor = "red"
     st_dissipador = "🔴 DESLIGADO"
     st_refrigerador = "🟢 LIGADO"
-    simbolo_processo = "🔥" # Símbolo de quente
+    simbolo_processo = "🔥" 
 
 # --- PAINEL DE VISUALIZAÇÃO DO SISTEMA (IHM) ---
 
-# 1. Cartões de Métricas (Resumo numérico)
+# Cartões de Métricas
 st.subheader("📊 Resumo Numérico", anchor=False)
 col1, col2, col3 = st.columns(3)
 with col1:
@@ -57,20 +56,18 @@ with col3:
 
 st.markdown("---")
 
-# 2. Visão Esquemática (O "Sistema" Visual)
+# Visão Esquemática 
 st.subheader("🖥️ Visão Esquemática do Processo", anchor=False)
 
-# Criamos 3 colunas para desenhar o esquema
-# O tamanho das colunas [1, 2, 1] dá mais espaço para o processo central
 sch1, sch2, sch3 = st.columns([1, 2, 1])
 
-# --- Coluna 1: Dissipador (Aquecedor) ---
+# --- Coluna 1---
 with sch1:
     st.markdown("#### Dissipador (Aquecimento)")
     if temperatura <= 30: # Ativo em baixa
         st.info("Status: Aquecendo o sistema.")
 
-# --- Coluna 2: Processo Principal / Sensor ---
+# --- Coluna 2---
 with sch2:
     st.markdown(f"#### Zona do Sensor :{nivel_cor}[**{temperatura:.1f}°C**]")
     # Usamos markdown para centralizar o desenho
@@ -84,7 +81,7 @@ with sch2:
     </div>
     """, unsafe_allow_html=True)
 
-# --- Coluna 3: Refrigerador (Resfriador) ---
+# --- Coluna 3---
 with sch3:
     st.markdown("#### Refrigerador (Resfriamento)")
     if temperatura > 32: # Ativo em alta
